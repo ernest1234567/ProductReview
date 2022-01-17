@@ -16,8 +16,8 @@ namespace ProductReview.Server.Configurations.Entities
 				new Post
 				{
 					Id = 1,
-					Name = "Dress",
-					Review = "This Dress is so good",
+					Title = "Yayoi",
+					Description = "This restaurant is so good",
 					DateCreated = DateTime.Now.AddMonths(-3),
 					DateUpdated = DateTime.Now.AddMonths(-3),
 					CreatedBy = "System",

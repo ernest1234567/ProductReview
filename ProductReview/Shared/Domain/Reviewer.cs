@@ -12,6 +12,6 @@ namespace ProductReview.Shared.Domain
 	{
 		[Required]
 		public string Name { get; set; }
-		public string Review { get; set; }
+		
 	}
 }
