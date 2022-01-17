@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductReview.Server.Data;
 
 namespace ProductReview.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220117065614_AddApplicationTables")]
+    partial class AddApplicationTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -357,18 +359,6 @@ namespace ProductReview.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clothings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2021, 10, 17, 15, 42, 22, 955, DateTimeKind.Local).AddTicks(6672),
-                            DateUpdated = new DateTime(2021, 10, 17, 15, 42, 22, 958, DateTimeKind.Local).AddTicks(4703),
-                            Name = "Dress",
-                            Review = "This Dress is so good",
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("ProductReview.Shared.Domain.FoodAndBeverage", b =>
@@ -400,18 +390,6 @@ namespace ProductReview.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FoodAndBeverages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2021, 10, 17, 15, 42, 22, 960, DateTimeKind.Local).AddTicks(5257),
-                            DateUpdated = new DateTime(2021, 10, 17, 15, 42, 22, 960, DateTimeKind.Local).AddTicks(5282),
-                            Name = "Cake",
-                            Review = "This Cake is so delicious",
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

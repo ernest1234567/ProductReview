@@ -8,10 +8,13 @@ using CarRentalManagement.Shared.Domain;
 
 namespace ProductReview.Shared.Domain
 {
-	public class FoodAndBeverage : BaseDomainModel
+	public class Post : BaseDomainModel
 	{
 		[Required]
-		public string Name { get; set; }
-		public string Review { get; set; }
+		public string Title { get; set; }
+		public DateTime Date  { get; set; }
+		public string Rating { get; set; }
+		public string Description { get; set; }
+		public virtual Reviewer Reviewer { get; set; }
 	}
 }
