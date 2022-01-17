@@ -8,16 +8,16 @@ using ProductReview.Shared.Domain;
 
 namespace ProductReview.Server.Configurations.Entities
 {
-	public class ClothingSeedConfiguration : IEntityTypeConfiguration<Post>
+	public class ReviewerSeedConfiguration : IEntityTypeConfiguration<Reviewer>
 	{
-		public void Configure(EntityTypeBuilder<Post> builder)
+		public void Configure(EntityTypeBuilder<Reviewer> builder)
 		{
 			builder.HasData(
-				new Post
+				new Reviewer
 				{
 					Id = 1,
-					Name = "Dress",
-					Review = "This Dress is so good",
+					Name = "Cake",
+					Review = "This Cake is so delicious",
 					DateCreated = DateTime.Now.AddMonths(-3),
 					DateUpdated = DateTime.Now.AddMonths(-3),
 					CreatedBy = "System",

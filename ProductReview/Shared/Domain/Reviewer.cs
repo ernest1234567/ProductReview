@@ -8,7 +8,7 @@ using CarRentalManagement.Shared.Domain;
 
 namespace ProductReview.Shared.Domain
 {
-	public class FoodAndBeverage : BaseDomainModel
+	public class Reviewer : BaseDomainModel
 	{
 		[Required]
 		public string Name { get; set; }

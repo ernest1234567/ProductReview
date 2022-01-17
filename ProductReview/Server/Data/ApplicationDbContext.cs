@@ -19,15 +19,15 @@ namespace ProductReview.Server.Data
 			IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
 		{
 		}
-		public DbSet<Post> Clothings { get; set; }
-		public DbSet<FoodAndBeverage> FoodAndBeverages { get; set; }
+		public DbSet<Post> Posts { get; set; }
+		public DbSet<Reviewer> Reviewers { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
 
-			builder.ApplyConfiguration(new ClothingSeedConfiguration());
-			builder.ApplyConfiguration(new FoodAndBeverageSeedConfiguration());
+			builder.ApplyConfiguration(new PostSeedConfiguration());
+			builder.ApplyConfiguration(new ReviewerSeedConfiguration());
 			
 		}
 	}
