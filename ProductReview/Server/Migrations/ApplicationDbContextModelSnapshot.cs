@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductReview.Server.Data;
 
-namespace ProductReview.Server.Data.Migrations
+namespace ProductReview.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -328,7 +328,7 @@ namespace ProductReview.Server.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ProductReview.Shared.Domain.Clothing", b =>
+            modelBuilder.Entity("ProductReview.Shared.Domain.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -338,17 +338,26 @@ namespace ProductReview.Server.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Review")
+                    b.Property<string>("Rating")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReviewerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
@@ -356,22 +365,25 @@ namespace ProductReview.Server.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clothings");
+                    b.HasIndex("ReviewerId");
+
+                    b.ToTable("Posts");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2021, 10, 17, 15, 42, 22, 955, DateTimeKind.Local).AddTicks(6672),
-                            DateUpdated = new DateTime(2021, 10, 17, 15, 42, 22, 958, DateTimeKind.Local).AddTicks(4703),
-                            Name = "Dress",
-                            Review = "This Dress is so good",
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(2021, 10, 17, 16, 53, 31, 2, DateTimeKind.Local).AddTicks(6917),
+                            DateUpdated = new DateTime(2021, 10, 17, 16, 53, 31, 4, DateTimeKind.Local).AddTicks(9996),
+                            Description = "This restaurant is so good",
+                            Title = "Yayoi",
                             UpdatedBy = "System"
                         });
                 });
 
-            modelBuilder.Entity("ProductReview.Shared.Domain.FoodAndBeverage", b =>
+            modelBuilder.Entity("ProductReview.Shared.Domain.Reviewer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -391,25 +403,21 @@ namespace ProductReview.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Review")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodAndBeverages");
+                    b.ToTable("Reviewers");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2021, 10, 17, 15, 42, 22, 960, DateTimeKind.Local).AddTicks(5257),
-                            DateUpdated = new DateTime(2021, 10, 17, 15, 42, 22, 960, DateTimeKind.Local).AddTicks(5282),
-                            Name = "Cake",
-                            Review = "This Cake is so delicious",
+                            DateCreated = new DateTime(2021, 10, 17, 16, 53, 31, 6, DateTimeKind.Local).AddTicks(4531),
+                            DateUpdated = new DateTime(2021, 10, 17, 16, 53, 31, 6, DateTimeKind.Local).AddTicks(4546),
+                            Name = "Jeremy",
                             UpdatedBy = "System"
                         });
                 });
@@ -463,6 +471,15 @@ namespace ProductReview.Server.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductReview.Shared.Domain.Post", b =>
+                {
+                    b.HasOne("ProductReview.Shared.Domain.Reviewer", "Reviewer")
+                        .WithMany()
+                        .HasForeignKey("ReviewerId");
+
+                    b.Navigation("Reviewer");
                 });
 #pragma warning restore 612, 618
         }

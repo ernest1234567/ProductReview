@@ -16,8 +16,7 @@ namespace ProductReview.Server.Configurations.Entities
 				new Reviewer
 				{
 					Id = 1,
-					Name = "Cake",
-					Review = "This Cake is so delicious",
+					Name = "Jeremy",
 					DateCreated = DateTime.Now.AddMonths(-3),
 					DateUpdated = DateTime.Now.AddMonths(-3),
 					CreatedBy = "System",
